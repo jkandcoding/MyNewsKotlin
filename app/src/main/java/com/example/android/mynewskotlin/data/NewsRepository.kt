@@ -1,13 +1,9 @@
 package com.example.android.mynewskotlin.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.*
 import com.example.android.mynewskotlin.api.NewsApi
 import com.example.android.mynewskotlin.db.NewsDatabase
-import org.threeten.bp.Duration
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.ZoneOffset
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,14 +32,4 @@ class NewsRepository @Inject constructor(
             pagingSourceFactory = pagingSourceFactory
         ).liveData
     }
-
-    // todo delete everything
-//    suspend fun dbDataOlderThanFive(): MutableLiveData<Boolean> {
-//        val nowTime = OffsetDateTime.now().withOffsetSameLocal(ZoneOffset.UTC)
-//        val lastTimestamp = newsDatabase.newsArticleDao().loadLastTimestamp()
-//
-//
-//        return (Duration.between(lastTimestamp, nowTime).toMinutes() > 4)
-//    }
-
 }

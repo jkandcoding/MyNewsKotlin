@@ -7,10 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.LoadStateAdapter
-import androidx.paging.filter
-import androidx.paging.map
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.android.mynewskotlin.R
 import com.example.android.mynewskotlin.data.NewsArticle
 import com.example.android.mynewskotlin.databinding.FragmentGalleryBinding
@@ -42,9 +38,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), NewsAdapter.OnItemC
                 adapter.retry()
             }
 
-            // todo better way to hide progress bar??
-           // swipeRefreshGallery.setProgressViewEndTarget(false, 0)
-
             swipeRefreshGallery.setOnRefreshListener {
                 adapter.refresh()
             }
@@ -52,12 +45,11 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), NewsAdapter.OnItemC
 
         viewModel.articles.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
-
         }
 
         adapter.addLoadStateListener { loadstate ->
             binding.apply {
-              //  pbGallery.isVisible = loadstate.mediator?.refresh is LoadState.Loading
+                //  pbGallery.isVisible = loadstate.mediator?.refresh is LoadState.Loading
                 rvGallery.isVisible = loadstate.mediator?.refresh is LoadState.NotLoading
                 btnGalleryRetry.isVisible = loadstate.mediator?.refresh is LoadState.Error
                 tvGalleryError.isVisible = loadstate.mediator?.refresh is LoadState.Error
@@ -65,11 +57,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), NewsAdapter.OnItemC
                 swipeRefreshGallery.isRefreshing = loadstate.mediator?.refresh is LoadState.Loading
             }
         }
-
-
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

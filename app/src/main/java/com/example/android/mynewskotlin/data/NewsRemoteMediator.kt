@@ -46,10 +46,9 @@ class NewsRemoteMediator(
                 LoadType.REFRESH -> {
                     Log.d("hghhgh", "sad sam u REFRESH-U")
                     if (dbDataOlderThanFive()) {
-                    NEWS_STARTING_PAGE_INDEX
+                        NEWS_STARTING_PAGE_INDEX
                     } else
                         return MediatorResult.Success(endOfPaginationReached = true)
-
                 }
 
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
@@ -65,13 +64,8 @@ class NewsRemoteMediator(
                     remoteKeyOfLastItemInDb.nextKey
                 }
             }
-            // todo send this to viewModel
-            if (dbDataOlderThanFive()) {
 
-            }
-
-
-            Log.d("hghhgh", "loadKey is: " + loadKey)       // ok for refresh
+            Log.d("hghhgh", "loadKey is: " + loadKey)
             val response = newsApi.searchNews("bbc-news", loadKey, state.config.pageSize)
 
             Log.d("hghhgh", "response status: " + response.status)

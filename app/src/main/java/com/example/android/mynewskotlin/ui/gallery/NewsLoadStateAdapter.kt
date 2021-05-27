@@ -39,5 +39,4 @@ class NewsLoadStateAdapter(private val retry: () -> Unit) :
             }
         }
     }
-
 }

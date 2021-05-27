@@ -3,7 +3,6 @@ package com.example.android.mynewskotlin.ui.details
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -53,15 +52,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         tvDescriptionFragmentDetails.isVisible = true
                         return false
                     }
-                })  // we wont to load a drawable into imageView
+                })
                 .into(ivFragmentDetails)
 
             tvTitleFragmentDetails.text = article.title
             tvDescriptionFragmentDetails.text = article.description
-
-            // dinamicly changing label, I did it with passing article.title: String via safeArgs
-            // (requireActivity() as AppCompatActivity).supportActionBar?.title = article.title
-
         }
     }
 }

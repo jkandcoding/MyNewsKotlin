@@ -10,11 +10,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.android.mynewskotlin.data.NewsArticle
 import com.example.android.mynewskotlin.databinding.ItemGalleryBinding
 
-class NewsAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<NewsArticle, NewsAdapter.NewsViewHolder>(ARTICLE_COMPARATOR) {
+class NewsAdapter(private val listener: OnItemClickListener) :
+    PagingDataAdapter<NewsArticle, NewsAdapter.NewsViewHolder>(ARTICLE_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemGalleryBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false)
+            LayoutInflater.from(parent.context), parent, false
+        )
         return NewsViewHolder(binding)
     }
 
@@ -42,18 +44,18 @@ class NewsAdapter(private val listener: OnItemClickListener) : PagingDataAdapter
             }
         }
 
-            fun bind(article: NewsArticle) {
-                binding.apply {
-                    Glide.with(itemView)
-                        .load(article.urlToImage)
-                        .centerCrop()
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .into(ivItemGallery)
+        fun bind(article: NewsArticle) {
+            binding.apply {
+                Glide.with(itemView)
+                    .load(article.urlToImage)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(ivItemGallery)
 
-                    tvItemGallery.text = article.timestamp.toString()
-                }
+                tvItemGallery.text = article.timestamp.toString()
             }
         }
+    }
 
     interface OnItemClickListener {
         fun onItemClick(article: NewsArticle)
@@ -64,12 +66,8 @@ class NewsAdapter(private val listener: OnItemClickListener) : PagingDataAdapter
             override fun areItemsTheSame(oldItem: NewsArticle, newItem: NewsArticle) =
                 oldItem.title == newItem.title
 
-
             override fun areContentsTheSame(oldItem: NewsArticle, newItem: NewsArticle) =
                 oldItem == newItem
-
         }
     }
-
-
 }
