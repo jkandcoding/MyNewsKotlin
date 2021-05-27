@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:paddingTop="2dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:paddingBottom="2dp">
+
+    <ImageView
+        android:id="@+id/iv_item_gallery"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+       />
+
+    <TextView
+        android:id="@+id/tv_item_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        tools:text="This is the tittle of the article, it is very long tiitle that needs three lines"
+        android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        />
+
+</LinearLayout>
