@@ -1,5 +1,6 @@
 package com.example.android.mynewskotlin.ui.gallery
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -33,6 +34,7 @@ class NewsLoadStateAdapter(private val retry: () -> Unit) :
 
         fun bind(loadState: LoadState) {
             binding.apply {
+                Log.d("hghhgh FOOTER", loadState.toString())
                 pbFooter.isVisible = loadState is LoadState.Loading
                 btnFooterRetry.isVisible = loadState !is LoadState.Loading
                 tvFooterError.isVisible = loadState !is LoadState.Loading

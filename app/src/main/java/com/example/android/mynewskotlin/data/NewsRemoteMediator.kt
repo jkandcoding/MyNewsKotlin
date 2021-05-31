@@ -1,6 +1,5 @@
 package com.example.android.mynewskotlin.data
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -28,7 +27,6 @@ class NewsRemoteMediator(
     private val newsRemoteKeysDao = newsDatabase.newsRemoteKeysDao()
 
     override suspend fun initialize(): InitializeAction {
-        Log.d("hghhgh", "sad sam u INITIALIZE():")
         return if (dbDataOlderThanFive()) {
             InitializeAction.LAUNCH_INITIAL_REFRESH
         } else {
@@ -44,7 +42,6 @@ class NewsRemoteMediator(
         return try {
             val loadKey = when (loadType) {
                 LoadType.REFRESH -> {
-                    Log.d("hghhgh", "sad sam u REFRESH-U")
                     if (dbDataOlderThanFive()) {
                         NEWS_STARTING_PAGE_INDEX
                     } else
@@ -64,19 +61,14 @@ class NewsRemoteMediator(
                     remoteKeyOfLastItemInDb.nextKey
                 }
             }
-
-            Log.d("hghhgh", "loadKey is: " + loadKey)
-            val response = newsApi.searchNews("bbc-news", loadKey, state.config.pageSize)
-
-            Log.d("hghhgh", "response status: " + response.status)
+            val response = newsApi.searchNews(NewsApi.SOURCES, loadKey, state.config.pageSize)
             var count = 0
-            var datum = OffsetDateTime.now()
+
             newsDatabase.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     newsRemoteKeysDao.clearRemoteKeysDb()
                     newsArticleDao.clearNewsDb()
                 }
-
                 val prevKey = if (loadKey == NEWS_STARTING_PAGE_INDEX) null else loadKey - 1
                 val nextKey = if (response.articles.isEmpty()) null else loadKey + 1
                 val remoteKeys = response.articles.map { newsArticle ->
@@ -99,11 +91,8 @@ class NewsRemoteMediator(
 
                 newsRemoteKeysDao.insertAll(remoteKeys)
                 newsArticleDao.insertAll(articlesForDb)
-                datum = newsArticleDao.loadLastTimestamp()
                 count = newsArticleDao.loadNumberOfArticles()
             }
-            Log.d("hghhgh", "zapisa u bazi: " + count + ", totalResults: " + response.totalResults)
-            Log.d("hghhgh", "zadnji timestamp: " + datum)
             MediatorResult.Success(endOfPaginationReached = response.totalResults == count)
 
         } catch (e: IOException) {
@@ -113,7 +102,7 @@ class NewsRemoteMediator(
         }
     }
 
-    suspend fun dbDataOlderThanFive(): Boolean {
+    private suspend fun dbDataOlderThanFive(): Boolean {
         val nowTime = OffsetDateTime.now().withOffsetSameLocal(ZoneOffset.UTC)
         val lastTimestamp: OffsetDateTime? = newsArticleDao.loadLastTimestamp()
 

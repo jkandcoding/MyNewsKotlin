@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    android:paddingTop="2dp"
     android:paddingStart="4dp"
+    android:paddingTop="2dp"
     android:paddingEnd="4dp"
     android:paddingBottom="2dp">
 
@@ -13,19 +14,40 @@
         android:id="@+id/iv_item_gallery"
         android:layout_width="150dp"
         android:layout_height="100dp"
-       />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_item_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        tools:text="This is the tittle of the article, it is very long tiitle that needs three lines"
-        android:textSize="14sp"
-        android:maxLines="2"
+        android:id="@+id/tv_title_item_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:gravity="center_vertical"
-        />
+        android:maxLines="2"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_gallery"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="This is the tittle of the article, his is the tittle of the article" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_description_item_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toEndOf="@id/iv_item_gallery"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_item_gallery"
+        tools:text="This is the description of the article" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

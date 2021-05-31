@@ -49,11 +49,10 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), NewsAdapter.OnItemC
 
         adapter.addLoadStateListener { loadstate ->
             binding.apply {
-                //  pbGallery.isVisible = loadstate.mediator?.refresh is LoadState.Loading
-                rvGallery.isVisible = loadstate.mediator?.refresh is LoadState.NotLoading
+                rvGallery.isVisible = loadstate.mediator?.refresh is LoadState.NotLoading ||
+                        loadstate.source.refresh is LoadState.NotLoading
                 btnGalleryRetry.isVisible = loadstate.mediator?.refresh is LoadState.Error
                 tvGalleryError.isVisible = loadstate.mediator?.refresh is LoadState.Error
-
                 swipeRefreshGallery.isRefreshing = loadstate.mediator?.refresh is LoadState.Loading
             }
         }
@@ -65,7 +64,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), NewsAdapter.OnItemC
     }
 
     override fun onItemClick(article: NewsArticle) {
-        val action = GalleryFragmentDirections.actionGalleryFragment2ToDetailsFragment(
+        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailsFragment(
             article,
             article.title
         )

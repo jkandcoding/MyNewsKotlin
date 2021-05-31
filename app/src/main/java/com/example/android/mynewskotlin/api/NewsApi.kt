@@ -10,6 +10,7 @@ interface NewsApi {
     companion object {
         const val BASE_URL = "https://newsapi.org/"
         const val API_KEY = BuildConfig.NEWSORG_ACCESS_KEY
+        const val SOURCES = "bbc-news"
     }
 
     @Headers("X-Api-Key: $API_KEY")

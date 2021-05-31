@@ -52,7 +52,8 @@ class NewsAdapter(private val listener: OnItemClickListener) :
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(ivItemGallery)
 
-                tvItemGallery.text = article.timestamp.toString()
+                tvTitleItemGallery.text = article.title
+                tvDescriptionItemGallery.text = article.description
             }
         }
     }

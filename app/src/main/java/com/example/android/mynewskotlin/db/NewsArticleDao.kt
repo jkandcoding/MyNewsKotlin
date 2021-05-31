@@ -17,9 +17,6 @@ interface NewsArticleDao {
     @Query("SELECT * FROM news")
     fun loadNews(): PagingSource<Int, NewsArticle>
 
-    @Query("SELECT publishedAt FROM news ORDER BY datetime(publishedAt) ASC LIMIT 1")
-    fun loadLastPublishedAt(): String
-
     @Query("SELECT timestamp FROM news ORDER BY datetime(timestamp) DESC LIMIT 1")
     suspend fun loadLastTimestamp(): OffsetDateTime?
 

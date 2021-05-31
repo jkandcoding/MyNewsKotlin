@@ -12,7 +12,6 @@ class NewsViewModel @Inject constructor(
     private val repository: NewsRepository
 ) : ViewModel() {
 
-    //val articles = repository.getArticles().cachedIn(viewModelScope)
     val articles by lazy { repository.getArticles().cachedIn(viewModelScope) }
 
 }
