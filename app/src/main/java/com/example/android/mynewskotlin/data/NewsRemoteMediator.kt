@@ -1,5 +1,6 @@
 package com.example.android.mynewskotlin.data
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -45,7 +46,7 @@ class NewsRemoteMediator(
                     if (dbDataOlderThanFive()) {
                         NEWS_STARTING_PAGE_INDEX
                     } else
-                        return MediatorResult.Success(endOfPaginationReached = true)
+                        return MediatorResult.Success(endOfPaginationReached = false)
                 }
 
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
@@ -93,6 +94,10 @@ class NewsRemoteMediator(
                 newsArticleDao.insertAll(articlesForDb)
                 count = newsArticleDao.loadNumberOfArticles()
             }
+            if (response.totalResults == count) {
+                Log.d("hghhgh", "response_tot_res: " + response.totalResults + ", count: " + count)
+            }
+            Log.d("hghhgh", "response_tot_res: " + response.totalResults + ", count: " + count)
             MediatorResult.Success(endOfPaginationReached = response.totalResults == count)
 
         } catch (e: IOException) {

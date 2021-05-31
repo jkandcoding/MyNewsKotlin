@@ -34,7 +34,6 @@ class NewsLoadStateAdapter(private val retry: () -> Unit) :
 
         fun bind(loadState: LoadState) {
             binding.apply {
-                Log.d("hghhgh FOOTER", loadState.toString())
                 pbFooter.isVisible = loadState is LoadState.Loading
                 btnFooterRetry.isVisible = loadState !is LoadState.Loading
                 tvFooterError.isVisible = loadState !is LoadState.Loading
