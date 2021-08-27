@@ -38,7 +38,7 @@ class NewsAdapter(private val listener: OnItemClickListener) :
                 if (position != RecyclerView.NO_POSITION) {
                     val item = getItem(position)
                     if (item != null) {
-                        listener.onItemClick(item)
+                        listener.onItemClick(position)
                     }
                 }
             }
@@ -59,7 +59,7 @@ class NewsAdapter(private val listener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(article: NewsArticle)
+        fun onItemClick(position: Int)
     }
 
     companion object {

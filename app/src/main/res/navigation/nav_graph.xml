@@ -12,18 +12,17 @@
         tools:layout="@layout/fragment_gallery" >
         <action
             android:id="@+id/action_galleryFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/viewPagerFragment" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.example.android.mynewskotlin.ui.details.DetailsFragment"
-        android:label="{article.title}"
-        tools:layout="@layout/fragment_details" >
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.android.mynewskotlin.ui.details.ViewPagerFragment"
+        tools:layout="@layout/fragment_view_pager">
         <argument
-            android:name="article"
-            app:argType="com.example.android.mynewskotlin.data.NewsArticle" />
-        <argument
-            android:name="article.title"
-            app:argType="string" />
+            android:name="position"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.details.DetailsFragment">
+    tools:context=".ui.details.ViewPagerFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,9 +29,8 @@
                 android:layout_margin="8dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:visibility="gone"
-                tools:text="Here goes title for the article"
-                tools:visibility="visible" />
+                android:visibility="visible"
+                tools:text="Here goes title for the article" />
 
             <TextView
                 android:id="@+id/tv_description_fragment_details"
@@ -40,9 +39,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:textSize="16sp"
-                android:visibility="gone"
-                tools:text="Here goes description about the article and all the bla bla stuff"
-                tools:visibility="visible" />
+                android:visibility="visible"
+                tools:text="Here goes description about the article and all the bla bla stuff" />
 
         </LinearLayout>
     </ScrollView>

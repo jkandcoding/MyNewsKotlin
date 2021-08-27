@@ -32,4 +32,8 @@ class NewsRepository @Inject constructor(
             pagingSourceFactory = pagingSourceFactory
         ).liveData
     }
+
+    fun getArticlesForViewPager(): LiveData<List<NewsArticle>> {
+        return newsDatabase.newsArticleDao().loadNewsForViewPager()
+    }
 }

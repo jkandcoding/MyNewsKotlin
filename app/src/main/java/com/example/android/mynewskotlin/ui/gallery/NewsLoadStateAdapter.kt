@@ -1,6 +1,5 @@
 package com.example.android.mynewskotlin.ui.gallery
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible

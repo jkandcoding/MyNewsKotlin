@@ -1,5 +1,6 @@
 package com.example.android.mynewskotlin.db
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
@@ -16,6 +17,10 @@ interface NewsArticleDao {
 
     @Query("SELECT * FROM news")
     fun loadNews(): PagingSource<Int, NewsArticle>
+
+    //load LiveData for ViewPagerFragment
+    @Query("SELECT * FROM news")
+    fun loadNewsForViewPager(): LiveData<List<NewsArticle>>
 
     @Query("SELECT timestamp FROM news ORDER BY datetime(timestamp) DESC LIMIT 1")
     suspend fun loadLastTimestamp(): OffsetDateTime?
